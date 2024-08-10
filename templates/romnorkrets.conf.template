@@ -1,0 +1,18 @@
+server {
+    listen ${PORT};
+
+    server_name romnorkrets.* www.romnorkrets.*;
+
+    client_max_body_size 0;
+
+    location / {
+        proxy_buffers 32 4k;
+        proxy_pass https://romnorkrets.speiding.no/;
+        proxy_set_header Accept-Encoding "";
+        proxy_redirect https://romnorkrets.speiding.no/ https://romnorkrets.no/;
+
+        sub_filter 'romnorkrets.speiding.no' 'romnorkrets.no';
+        sub_filter_last_modified on;
+        sub_filter_once off;
+    }
+}
