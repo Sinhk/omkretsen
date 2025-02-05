@@ -3,7 +3,7 @@ server {
 
     server_name omkretsen.* www.omkretsen.*;
 
-    return 302 $scheme://$host$request_uri;
+    return 302 $scheme://romnorkrets.speiding.no$request_uri;
 
     client_max_body_size 0;
 
