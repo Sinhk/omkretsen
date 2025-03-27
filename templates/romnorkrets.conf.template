@@ -1,7 +1,14 @@
 server {
     listen ${PORT};
+    server_name www.romnorkrets.no;
 
-    server_name romnorkrets.no www.romnorkrets.no;
+    return 301 $scheme://romnorkrets.no$request_uri;
+}
+
+server {
+    listen ${PORT};
+
+    server_name romnorkrets.no;
 
     client_max_body_size 0;
 
