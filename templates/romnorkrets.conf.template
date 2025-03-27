@@ -1,7 +1,7 @@
 server {
     listen ${PORT};
 
-    server_name romnorkrets.* www.romnorkrets.*;
+    server_name romnorkrets.no www.romnorkrets.no;
 
     client_max_body_size 0;
 
