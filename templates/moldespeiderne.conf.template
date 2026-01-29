@@ -1,0 +1,38 @@
+server {
+    listen ${PORT};
+
+    server_name moldespeiderne.no;
+
+    client_max_body_size 0;
+
+    location / {
+        proxy_buffers 32 4k;
+        proxy_pass https://moldespeiderne.speiding.no/;
+        proxy_set_header Accept-Encoding "";
+        proxy_redirect https://moldespeiderne.speiding.no/ https://moldespeiderne.no/;
+
+        sub_filter 'moldespeiderne.speiding.no' 'moldespeiderne.no';
+        sub_filter_last_modified on;
+        sub_filter_once off;
+    }
+}
+
+
+server {
+    listen ${PORT};
+
+    server_name www.moldespeiderne.no;
+
+    client_max_body_size 0;
+
+    location / {
+        proxy_buffers 32 4k;
+        proxy_pass https://moldespeiderne.speiding.no/;
+        proxy_set_header Accept-Encoding "";
+        proxy_redirect https://moldespeiderne.speiding.no/ https://moldespeiderne.no/;
+
+        sub_filter 'moldespeiderne.speiding.no' 'www.moldespeiderne.no';
+        sub_filter_last_modified on;
+        sub_filter_once off;
+    }
+}
